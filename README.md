@@ -2,7 +2,7 @@
 
 This is a simple plugins for Recaf `4.X`.
 
-It is designed to help with remapping in someone game.
+It is designed to help with remapping on certain game.
 
 ## Introduction
 1. **KeywordNeutralizer**  
