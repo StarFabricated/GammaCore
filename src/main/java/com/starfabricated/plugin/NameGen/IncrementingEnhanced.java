@@ -7,7 +7,10 @@ import software.coley.recaf.info.member.FieldMember;
 import software.coley.recaf.info.member.LocalVariable;
 import software.coley.recaf.info.member.MethodMember;
 import software.coley.recaf.services.mapping.gen.naming.DeconflictingNameGenerator;
+import software.coley.recaf.util.Keywords;
 import software.coley.recaf.workspace.model.Workspace;
+
+import java.util.Set;
 
 public class IncrementingEnhanced implements DeconflictingNameGenerator {
     private Workspace workspace;
@@ -22,6 +25,7 @@ public class IncrementingEnhanced implements DeconflictingNameGenerator {
     private final String method_prefix;
     private final String var_prefix;
     private final Boolean save_package;
+    private static final Set<String> keywords =Keywords.getKeywords();
 
     public IncrementingEnhanced (String classPrefix, String fieldPrefix, String methodPrefix, String varPrefix, boolean savePackage){
         class_prefix = classPrefix;
@@ -59,7 +63,7 @@ public class IncrementingEnhanced implements DeconflictingNameGenerator {
     @Nonnull
     private String getPackageName(ClassInfo info){
         if (save_package) return info.getPackageName() != null ? info.getPackageName()+"/" : "";
-        return "";
+        else return "";
     }
 
     @Override
@@ -77,7 +81,7 @@ public class IncrementingEnhanced implements DeconflictingNameGenerator {
                     name = nextClassName();
                 }
             }
-            return packageName + name;
+        return keywords.stream().reduce(packageName,(pkg, keyword) -> pkg.replace(keyword, "_kwrm_")) + name;
     }
 
     @Nonnull

@@ -10,7 +10,7 @@ import software.coley.recaf.services.mapping.gen.naming.AbstractNameGeneratorPro
 @ApplicationScoped
 public class IncrementingEnhancedProvider extends AbstractNameGeneratorProvider<IncrementingEnhanced> {
     public static final String ID = "incrementingEnhanced";
-    private final ObservableString class_prefix = new ObservableString("Class_");
+    private final ObservableString class_prefix = new ObservableString("class_");
     private final ObservableString field_prefix = new ObservableString("field_");
     private final ObservableString method_prefix = new ObservableString("method_");
     private final ObservableString var_prefix = new ObservableString("var");
