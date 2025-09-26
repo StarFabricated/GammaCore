@@ -62,7 +62,7 @@ public class IncrementingEnhanced implements DeconflictingNameGenerator {
 
     @Nonnull
     private String getPackageName(ClassInfo info){
-        if (save_package) return info.getPackageName() != null ? info.getPackageName()+"/" : "";
+        if (save_package) return info.getPackageName() != null ? keywords.stream().reduce(info.getPackageName(),(pkg, keyword) -> pkg.replace(keyword, "_kwrm_"))+"/" : "";
         else return "";
     }
 
@@ -81,7 +81,7 @@ public class IncrementingEnhanced implements DeconflictingNameGenerator {
                     name = nextClassName();
                 }
             }
-        return keywords.stream().reduce(packageName,(pkg, keyword) -> pkg.replace(keyword, "_kwrm_")) + name;
+        return packageName + name;
     }
 
     @Nonnull
